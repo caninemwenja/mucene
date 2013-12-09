@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<ol>
+{% if user.is_authenticated %}
+<a href="{% url 'article_add' %}">Add an article</a>
+{% endif %}
+{% for article in object_list %}
+   <li>
+      [{{ article.votes }}] <a href="{% url 'article_detail' slug=article.slug %}"><b>{{ article.title }}</b> by {{ article.author.username }}</a>
+   </li>
+{% endfor %}
+</ol>
+{% endblock %}
